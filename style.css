@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&display=swap');
 
 *{
     margin: 0;
@@ -166,6 +166,7 @@ header{
     box-shadow: rgba(253, 206, 223, 0.504) 0px 3px 6px, rgba(253, 206, 223, 0.575) 0px 3px 6px;
 }
 
+
 #text-input{
     height: 3rem;
     width: 31.25rem;
@@ -282,19 +283,60 @@ footer p {
 
 .main{
     margin: 20px 0 20px 0;
-    height: 100vh;
-    width: 90%;
+    max-height: fit-content;
+    width: 95%;
     border: 1px solid black;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    padding: 25px 0 25px 0;
 }
 
 .items{
-    height: 100px;
-    width: 200px;
+    height: 350px;
+    min-height: fit-content;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 25px;
     border: 1px solid black;
+    margin: 15px 0 15px 0;
+    box-shadow: 0 3px 6px rgba(128, 128, 128, 0.486), 0 3px 6px rgba(128, 128, 128, 0.464) ;
+}
+
+.items img{
+    height: 80%;
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid black;
+    object-fit: cover;
+}
+
+.items h3{
+    font-size: 1.2rem;
+    font-family: "LXGW WenKai Mono TC", monospace;
+    font-weight: 400;
+    font-style: normal;
+    margin: 5px 0 5px 0;
+}
+
+.price{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.buy-now{
+    font-size: 0.8rem;
+    width: 100px;
+    height: fit-content;
+    padding: 5px 0 5px 0;
+    background-color: rgb(248, 232, 238);
+    box-shadow: none;
+    border: 1px solid rgb(242, 190, 209);
 }
