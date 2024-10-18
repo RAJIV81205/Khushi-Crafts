@@ -12,7 +12,7 @@
 
     .big-container{
         min-height: fit-content;
-        height: 100vh;
+        max-height: fit-content;
         align-items: center;
     }
 
