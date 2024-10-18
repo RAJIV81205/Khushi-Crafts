@@ -268,7 +268,7 @@ button{
 footer {
     background-color: #ffffff;
     text-align: center;
-    padding: 20px 0 20px 20px;
+    padding: 20px 0 20px 0;
     position: relative;
     bottom: 0;
     width: 100%;
