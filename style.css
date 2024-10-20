@@ -394,13 +394,17 @@ table td {
     border: 1px solid #ccc; /* Outer border around the table container */
     padding: 10px; /* Padding around the table inside the container */
     border-radius: 10px; /* Rounded corners for a modern look */
-    width: 100%;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     
 }
 
 #quantity[type="number"] {
-    min-width: 80px;
-    width: 200px;
+    width: 80px;
+
     padding: 8px 12px; /* Padding for better space inside */
     font-size: 16px; /* Consistent font size */
     border: 1px solid #ccc; /* Light border */
@@ -454,6 +458,20 @@ table td {
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.6); /* Add focus glow */
 }
 
+#img-pic{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+
+#img-pic img{
+    height: 270px;
+    width: 200px;
+    border-radius: 25px;
+    border: 1px solid black;
+}
 
 

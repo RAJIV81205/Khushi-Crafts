@@ -32,6 +32,7 @@ function fetchItemDetails() {
     const itemPrice = sessionStorage.getItem('itemPrice');
     const itemImage = sessionStorage.getItem('itemImage');
 
+
     // Check if item details are present in session storage
     if (itemName && itemPrice && itemImage) {
         // Display the item details on the payment page along with quantity input and total price
@@ -39,6 +40,7 @@ function fetchItemDetails() {
         document.getElementById("name").innerText = `${itemName}`;
         document.getElementById("price").innerText = `${itemPrice}`;
         //document.getElementById("description").innerText = `${itemName}`;
+        document.getElementById("img-pic").innerHTML = `<img src="https://${itemImage}">`;
     
 
 
@@ -60,7 +62,7 @@ function updateTotalPrice() {
     const totalPrice = itemPrice * quantity; // Calculate total price
 
     // Update the total price display
-    document.getElementById('total-price').textContent = `Total Price: ₹${totalPrice}`;
+    document.getElementById('total-price').textContent = `₹ ${totalPrice}`;
 }
 
 // Function to determine if the current page is payment.html
