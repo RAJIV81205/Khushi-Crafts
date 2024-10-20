@@ -15,11 +15,13 @@ document.querySelectorAll('.buy-now').forEach(button => {
         const itemName = this.dataset.itemName;
         const itemPrice = this.dataset.itemPrice;
         const itemImage = this.dataset.itemImage;
+        const itemDescription = this.dataset.itemDescription;
 
         // Store item details in session storage
         sessionStorage.setItem('itemName', itemName);
         sessionStorage.setItem('itemPrice', itemPrice);
         sessionStorage.setItem('itemImage', itemImage);
+        sessionStorage.setItem('itemDescription',itemDescription);
 
         // Redirect to payment page
         window.location.href = `payment.html`;
@@ -31,6 +33,7 @@ function fetchItemDetails() {
     const itemName = sessionStorage.getItem('itemName');
     const itemPrice = sessionStorage.getItem('itemPrice');
     const itemImage = sessionStorage.getItem('itemImage');
+    const itemDescription = sessionStorage.getItem('itemDescription');
 
 
     // Check if item details are present in session storage
@@ -39,7 +42,7 @@ function fetchItemDetails() {
 
         document.getElementById("name").innerText = `${itemName}`;
         document.getElementById("price").innerText = `${itemPrice}`;
-        //document.getElementById("description").innerText = `${itemName}`;
+        document.getElementById("description").innerText = `${itemDescription}`;
         document.getElementById("img-pic").innerHTML = `<img src="https://${itemImage}">`;
     
 
@@ -61,8 +64,13 @@ function updateTotalPrice() {
     const quantity = document.getElementById('quantity').value; // Get current quantity
     const totalPrice = itemPrice * quantity; // Calculate total price
 
-    // Update the total price display
-    document.getElementById('total-price').textContent = `₹ ${totalPrice}`;
+    if (quantity === 0 || quantity > 10) {
+        alert("Please Enter A Value Between 1 to 10");
+        document.getElementById("quantity").value=" ";
+    } else {
+        document.getElementById('total-price').textContent = `₹ ${totalPrice}`;
+    }
+    
 }
 
 // Function to determine if the current page is payment.html
