@@ -33,6 +33,7 @@ mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Order Schema
 const orderSchema = new mongoose.Schema({
+  orderNumber: Number,
   item: String,
   quantity: Number,
   price: String,
