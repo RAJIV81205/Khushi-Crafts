@@ -10,6 +10,19 @@ app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use(function(req, res, next) {
+      // res.header("Access-Control-Allow-Origin", "*");
+      const allowedOrigins = ['http://localhost:3000', 'https://khushi-crafts.onrender.com'];
+      const origin = req.headers.origin;
+      if (allowedOrigins.includes(origin)) {
+           res.setHeader('Access-Control-Allow-Origin', origin);
+      }
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+      res.header("Access-Control-Allow-credentials", true);
+      res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+      next();
+    });
+
 // MongoDB Atlas connection string (replace with your actual credentials)
 const mongoUri = 'mongodb+srv://lucky81205:JKtQAuIL7auLnE4Z@cluster0.np6zm.mongodb.net/khushi-crafts-order?retryWrites=true&w=majority&appName=Cluster0';
 
