@@ -141,7 +141,7 @@ form.addEventListener('submit', async (event) => {
 
   // Send the data to the backend
   try {
-      const response = await fetch('https://khushi-crafts.netlify.app//submit-order', {
+      const response = await fetch('https://khushi-crafts.netlify.app/submit-order', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
