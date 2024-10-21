@@ -1,3 +1,18 @@
+function searchinPage() {
+    // Get the search input value
+    var input = document.getElementById("text-input").value.toLowerCase();
+    
+    // Get all the text content of the page
+    var content = document.body.innerText.toLowerCase();
+    
+    // Check if the input exists in the content
+    if(content.includes(input)) {
+        alert("Found: " + input);
+    } else {
+        alert("Not found: " + input);
+    }
+}
+
 function hideLoader() {
     const loaderContainer = document.getElementById('loader-container');
     loaderContainer.style.display = 'none';
@@ -64,11 +79,13 @@ function updateTotalPrice() {
     const quantity = document.getElementById('quantity').value; // Get current quantity
     const totalPrice = itemPrice * quantity; // Calculate total price
 
+
     if (quantity === 0 || quantity > 10) {
         alert("Please Enter A Value Between 1 to 10");
         document.getElementById("quantity").value=" ";
     } else {
         document.getElementById('total-price').textContent = `₹ ${totalPrice}`;
+        sessionStorage.setItem('totalPrice', totalPrice);
     }
     
 }
@@ -84,3 +101,77 @@ window.onload = function() {
         fetchItemDetails();
     }
 };
+
+const upiRadioButton = document.getElementById('payment_method_1');
+const codRadioButton = document.getElementById('payment_method_0');
+const upiPaymentLink = document.getElementById('upiPaymentLink');
+const totalPrice = sessionStorage.getItem('totalPrice');
+
+  // Add event listeners for changes in the radio buttons
+  upiRadioButton.addEventListener('change', function() {
+    if (upiRadioButton.checked) {
+      upiPaymentLink.style.display = 'block';
+      upiPaymentLink.innerHTML = `<a href="https://getupilink.com/upi/lucky81205@okicici?am=${totalPrice}"><h4>Click Me To Pay</h4></a>`;
+    }
+  });
+
+  codRadioButton.addEventListener('change', function() {
+    if (codRadioButton.checked) {
+      upiPaymentLink.innerHTML = '';
+      upiPaymentLink.style.display = 'none';
+    }
+  });
+
+
+const form = document.getElementById('orderForm');
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
+
+  // Collect the form data
+  const orderData = {
+      item: sessionStorage.getItem('itemName'),
+      quantity: document.getElementById('quantity').value,
+      price: sessionStorage.getItem('totalPrice'),
+      customerName: document.getElementById('customer_name').value,
+      customerEmail: document.getElementById('email_address').value,
+      customerMobile: document.getElementById('mobile_number').value
+  };
+  console.log(orderData);
+
+  // Send the data to the backend
+  try {
+      const response = await fetch('http://localhost:3000/submit-order', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+      });
+
+      // Check if the response status is OK (200-299)
+      if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Error: ${response.status} - ${errorText}`);
+      }
+
+      // Detect the Content-Type of the response
+      const contentType = response.headers.get('Content-Type');
+
+      let result;
+      if (contentType && contentType.includes('application/json')) {
+          // If the response is JSON
+          result = await response.json();
+      } else {
+          // If the response is text or any other type
+          result = await response.text();
+      }
+
+      // Display the success message or response
+      document.getElementById('response').innerText = (typeof result === 'string') ? result : result.message;
+      
+  } catch (error) {
+      console.error('Error submitting order:', error);
+      document.getElementById('response').innerText = 'Error submitting order: ' + error.message;
+  }
+});

@@ -6,6 +6,7 @@
     <title>Payment Page</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
+    
 </head>
 <body>
     <div class="loader-container" id="loader-container">
@@ -36,12 +37,38 @@
         </div>
     </div>
 
-    <button id="checkout" onclick="checkout()">Proceed To Checkout</button>
+    <form id="orderForm">
+        <div>
+          <label for="customer_name">Customer Name</label>
+          <input type="text" id="customer_name" name="customer_name" placeholder="Enter your Name" required>
+        </div>
+        <div>
+          <label for="mobile_number">Mobile Number</label>
+          <input type="tel" id="mobile_number" name="mobile_number" required>
+        </div>
+        <div>
+          <label for="email_address">Email Address</label>
+          <input type="email" id="email_address" name="email_address" required>
+        </div>
+        <div>
+          <label for="payment_method">Payment Method</label>
+          <input type="radio" id="payment_method_0" name="payment_method" value="option1" required>
+          <label for="payment_method_0">Cash on Delivery</label>
+          <input type="radio" id="payment_method_1" name="payment_method" value="option2" required>
+          <label for="payment_method_1">UPI</label>
+          
+        </div>
+        <div id="upiPaymentLink"></div>
+        <button type="submit" id="checkout">Proceed To Checkout</button>
+      </form>
+
+      <div id="response"></div>
 
 
     <footer>
         <p>&copy; 2024 Khushi Crafts. All Rights Reserved.</p>
     </footer>
+    
 
 
 <script src="script.js"></script>

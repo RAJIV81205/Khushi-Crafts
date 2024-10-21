@@ -134,19 +134,19 @@ h3{
 }
 
 .heading{
-    font-size: 2.5rem;
-    background-color: rgb(248, 232, 238);
-    font-family: "Roboto Condensed", sans-serif;
-    border-radius: 25px;
-    min-height: fit-content;
-    min-width: fit-content;
-    border: 1px solid rgb(242, 190, 209);
-    width: 25%;
+    background-color: white; 
+    padding: 15px 25px ; 
+    border: 2px solid #333; 
+    border-radius: 25px; 
+    font-family: "Roboto Condensed", sans-serif; 
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    padding: 0 25px 0 25px;
+    font-size: 2rem; 
+    color: #333; 
+    text-align: center;
 }
+
 
 h4{
     text-align: center;
@@ -218,6 +218,11 @@ button{
     background-color: rgb(248, 232, 238);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
+.cards:active{
+   box-shadow: 0 5px 10px #000000;
+}
+
 
 .cards img{
     height: 80%;
@@ -323,9 +328,9 @@ footer p {
 .items h3{
     font-size: 1.2rem;
     font-family: "LXGW WenKai Mono TC", monospace;
-    font-weight: 400;
+    font-weight: 600;
     font-style: normal;
-    margin: 5px 0 5px 0;
+    margin:10px 0 10px 0;
 }
 
 .price{
@@ -342,7 +347,11 @@ footer p {
     padding: 5px 0 5px 0;
     background-color: rgb(248, 232, 238);
     box-shadow: none;
-    border: 1px solid rgb(242, 190, 209);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.buy-now:active{
+    background-color: #888;
 }
 
 #payment-main{
@@ -431,7 +440,7 @@ table td {
 
 #checkout {
     height: fit-content;
-    width: 250px;
+    width: 100%;
     background-color: rgb(248, 232, 238); /* Green background */
     color: rgb(0, 0, 0); /* White text */
     font-size: 16px; /* Larger font size */
@@ -474,4 +483,72 @@ table td {
     border: 1px solid black;
 }
 
+form * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 380px;
+  }
+  
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  form input[type="text"],
+  form input[type="tel"],
+  form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  form input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  form input[type="text"]:focus,
+  form input[type="tel"]:focus,
+  form input[type="email"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  }
+  
+  form input[type="radio"] + label {
+    font-weight: normal;
+    color: #666;
+  }
+  
+  form input[type="radio"]:checked + label {
+    font-weight: bold;
+    color: #333;
+  }
 
+  #upiPaymentLink{
+    display: none;
+    height: fit-content;
+    padding: 10px 0;
+    width: 200px;
+    border: 1px solid black;
+    border-radius:25px ;
+    background-color: #0af106;
+  }
+  
