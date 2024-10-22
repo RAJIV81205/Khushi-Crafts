@@ -1,76 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
 </head>
+
 <body>
-    <div class="loader-container" id="loader-container">
-        <div class="loader" id="loader"></div>
+  <div class="loader-container" id="loader-container">
+    <div class="loader" id="loader"></div>
+  </div>
+
+
+  <header>
+    <h1>| KHUSHI.CRAFTS |</h1>
+  </header>
+
+  <input type="text" placeholder="Search Here" id="text-input">
+  <button onclick="searchinPage()">Search</button>
+
+  <span></span>
+
+  <h3 class="heading">Checkout Page</h3>
+  <div id="payment-main">
+    <div class="table-container">
+      <div id="img-pic"></div>
+      <table id="order-det">
+        <tr>
+          <th>Item Name</th>
+          <td id="name">-</td>
+        </tr>
+        <tr>
+          <th>Price</th>
+          <td id="price">-</td>
+        </tr>
+        <tr>
+          <th>Description</th>
+          <td id="description">-</td>
+        </tr>
+        <tr>
+          <th>Quantity</th>
+          <td><input type="number" id="quantity" value="1" min="1" max="10" onchange="updateTotalPrice()"></td>
+        </tr>
+        <tr>
+          <th>Total Price</th>
+          <td id="total-price">₹0</td>
+        </tr>
+      </table>
     </div>
+  </div>
 
-
-    <header>
-        <h1>| KHUSHI.CRAFTS |</h1>
-    </header>
-
-    <input type="text" placeholder="Search Here" id="text-input">
-    <button onclick="searchinPage()">Search</button>
-
-    <span></span>
-
-    <h3 class="heading">Checkout Page</h3>
-    <div id="payment-main">
-        <div class="table-container">
-            <div id="img-pic"></div>
-        <table>
-            <tr><th>Item Name</th><td id="name">-</td></tr>
-            <tr><th>Price</th><td id="price">-</td></tr>
-            <tr><th>Description</th><td id="description">-</td></tr>
-            <tr><th>Quantity</th><td><input type="number" id="quantity" value="1" min="1" max="10" onchange="updateTotalPrice()"></td></tr>
-            <tr><th>Total Price</th><td id="total-price">₹0</td></tr>
-        </table>
-        </div>
+  <form id="orderForm">
+    <div>
+      <label for="customer_name">Customer Name</label>
+      <input type="text" id="customer_name" name="customer_name" placeholder="Enter your Name" required>
     </div>
+    <div>
+      <label for="mobile_number">Mobile Number</label>
+      <input type="tel" id="mobile_number" name="mobile_number" required>
+    </div>
+    <div>
+      <label for="email_address">Email Address</label>
+      <input type="email" id="email_address" name="email_address" required>
+    </div>
+    <div>
+      <label for="payment_method">Payment Method</label>
+      <input type="radio" id="payment_method_0" name="payment_method" value="option1" required>
+      <label for="payment_method_0">Cash on Delivery</label>
+      <input type="radio" id="payment_method_1" name="payment_method" value="option2" required>
+      <label for="payment_method_1">UPI</label>
 
-    <form id="orderForm">
-        <div>
-          <label for="customer_name">Customer Name</label>
-          <input type="text" id="customer_name" name="customer_name" placeholder="Enter your Name" required>
-        </div>
-        <div>
-          <label for="mobile_number">Mobile Number</label>
-          <input type="tel" id="mobile_number" name="mobile_number" required>
-        </div>
-        <div>
-          <label for="email_address">Email Address</label>
-          <input type="email" id="email_address" name="email_address" required>
-        </div>
-        <div>
-          <label for="payment_method">Payment Method</label>
-          <input type="radio" id="payment_method_0" name="payment_method" value="option1" required>
-          <label for="payment_method_0">Cash on Delivery</label>
-          <input type="radio" id="payment_method_1" name="payment_method" value="option2" required>
-          <label for="payment_method_1">UPI</label>
-          
-        </div>
-        <div id="upiPaymentLink"></div>
-        <button type="submit" id="checkout">Proceed To Checkout</button>
-      </form>
+    </div>
+    <div id="upiPaymentLink"></div>
+    <button type="submit" id="checkout">Proceed To Checkout</button>
+  </form>
+  <div id="popupOverlay"></div>
+  <div id="orderPopup">
+    <lord-icon src="https://cdn.lordicon.com/cqofjexf.json" trigger="loop" delay="1000" state="in-reveal"
+      style="width:100px;height:100px">
+    </lord-icon>
+    <h2> Thank you for your order!</h2>
+    <table id="orderDetailsTable">
+      <tr>
+        <th>Order Number</th>
+        <td id="orderNumber"></td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td id="order-name"></td>
+      </tr>
+      <tr>
+        <th>Item</th>
+        <td id="order-item"></td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td id="order-price"></td>
+      </tr>
+      <tr>
+        <th>Quantity</th>
+        <td id="order-quantity"></td>
+      </tr>
+    </table>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
 
-      <div id="response"></div>
+  <div id="response"></div>
 
 
-    <footer>
-        <p>&copy; 2024 Khushi Crafts. All Rights Reserved.</p>
-    </footer>
-    
+  <footer>
+    <p>&copy; 2024 Khushi Crafts. All Rights Reserved.</p>
+  </footer>
 
 
-<script src="script.js"></script>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
