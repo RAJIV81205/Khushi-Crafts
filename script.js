@@ -216,5 +216,6 @@ function showPopup(orderData) {
 function closePopup() {
     document.getElementById('popupOverlay').style.display = 'none';
     document.getElementById('orderPopup').style.display = 'none';
+    location.reload();
 }
 
