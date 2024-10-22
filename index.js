@@ -57,6 +57,64 @@ app.post('/submit-order', async (req, res) => {
   }
 });
 
+
+
+
+
+
+
+const SibApiV3Sdk = require('sib-api-v3-sdk'); // Use SibApiV3Sdk, not Brevo
+const defaultClient = SibApiV3Sdk.ApiClient.instance;
+
+// Configure API key authorization: api-key
+const apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = process.env.EMAIL_API_KEY; // Replace with your Brevo API key
+
+
+
+app.post('/send-order-confirmation', (req, res) => {
+  const { orderNumber, item, quantity, price, customerName, customerEmail, customerMobile, orderTime } = req.body;
+
+  // Create email payload
+  const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+  sendSmtpEmail.to = [{ email: customerEmail }];
+  sendSmtpEmail.sender = { email: 'aradhyadubey1113@gmail.com', name: 'Khushi-Crafts' };
+  sendSmtpEmail.subject = `Order Confirmation - #${orderNumber}`;
+  
+  // HTML content for the email
+  sendSmtpEmail.htmlContent = `
+    <html>
+      <body>
+        <h1>Order Confirmation - #${orderNumber}</h1>
+        <p>Thank you for your order, ${customerName}!</p>
+        <h2>Order Details:</h2>
+        <ul>
+          <li>Item: ${item}</li>
+          <li>Quantity: ${quantity}</li>
+          <li>Total Price: ${price}</li>
+        </ul>
+        <p>Your order was placed. We will contact you soon on your mobile number: ${customerMobile}.</p>
+        <p>Thank you for shopping with Khushi Crafts!</p>
+      </body>
+    </html>
+  `;
+
+  // Send the email
+  const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+  apiInstance.sendTransacEmail(sendSmtpEmail).then(
+    function(data) {
+      console.log('Email sent successfully: ' + JSON.stringify(data));
+      res.status(200).send('Email Sent Successfully🎉');
+    },
+    function(error) {
+      console.error('Error sending email:', error);
+      res.status(500).send('Email Sending Failed.');
+    }
+  );
+});
+
+
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
