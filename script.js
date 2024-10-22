@@ -188,6 +188,7 @@ form.addEventListener('submit', async (event) => {
             result = await response.text();
             if (result === 'Order Placed Successfully🎉') {
                 showPopup(orderData); // Show the pop-up with order details
+                sendOrderConfirmation(orderData);
             }}
 
         
@@ -217,5 +218,36 @@ function closePopup() {
     document.getElementById('popupOverlay').style.display = 'none';
     document.getElementById('orderPopup').style.display = 'none';
     location.reload();
+}
+
+
+function sendOrderConfirmation(orderData) {
+    // Collect order data from sessionStorage and form inputs
+    const orderEmailData = {
+        orderNumber: orderData.orderNumber,
+        item: orderData.item,
+        quantity: orderData.quantity,
+        price: orderData.price,
+        customerName: orderData.customerName,
+        customerEmail: orderData.customerEmail,
+        customerMobile: orderData.customerMobile
+    };
+
+    fetch('https://khushi-crafts.onrender.com/send-order-confirmation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderEmailData)
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data); // Show a message on success
+        console.log("Order confirmation email sent successfully!");
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Failed to send order confirmation email.");
+    });
 }
 
