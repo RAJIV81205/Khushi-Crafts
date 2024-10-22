@@ -43,5 +43,8 @@
     h4{
         font-size: 0.8rem;
     }
+    #orderPopup{
+        width: 80%;
+    }
     
 }
