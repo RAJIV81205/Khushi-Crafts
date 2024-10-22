@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config()
 
 
 const app = express();
@@ -24,7 +25,7 @@ app.use(function(req, res, next) {
     });
 
 // MongoDB Atlas connection string (replace with your actual credentials)
-const mongoUri = 'mongodb+srv://lucky81205:JKtQAuIL7auLnE4Z@cluster0.np6zm.mongodb.net/khushi-crafts-order?retryWrites=true&w=majority&appName=Cluster0';
+const mongoUri = process.env.MONGOURI;
 
 // Connect to MongoDB Atlas
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
