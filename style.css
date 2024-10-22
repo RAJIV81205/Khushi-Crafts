@@ -369,42 +369,42 @@ footer p {
     padding: 25px 0;
 }
 
-table {
+#order-det {
     width: 100%; /* Full width of the parent container */
     border-collapse: collapse; /* Merges borders of adjacent cells */
-    margin: 20px 0; /* Add some space above and below the table */
+    margin: 20px 0; /* Add some space above and below the #order-det */
     font-size: 16px; /* Set a consistent font size */
     text-align: center; /* Left align text */
 
 }
 
-table th, table td {
-    padding: 12px 15px; /* Add padding inside table cells */
+#order-det th, #order-det td {
+    padding: 12px 15px; /* Add padding inside #order-det cells */
     border: 1px solid #ddd; /* Border around cells */
 }
 
-table th {
+#order-det th {
     background-color: #f4f4f4; /* Light background for header */
     color: #333; /* Darker text for the header */
     font-weight: bold; /* Bold header text */
 }
 
-table tr:nth-child(even) {
+#order-det tr:nth-child(even) {
     background-color: #f9f9f9; /* Lighter background for even rows */
 }
 
-table tr:hover {
+#order-det tr:hover {
     background-color: #f1f1f1; /* Change background on hover */
 }
 
-table td {
+#order-det td {
     vertical-align: middle; /* Align cell content in the middle vertically */
 }
 
 .table-container {
     overflow-x: auto; /* Horizontal scroll for smaller screens */
     margin-top: 20px;
-    border: 1px solid #ccc; /* Outer border around the table container */
+    border: 1px solid #ccc; /* Outer border around the #order-det container */
     padding: 10px; /* Padding around the table inside the container */
     border-radius: 10px; /* Rounded corners for a modern look */
     width: 90%;
@@ -492,61 +492,61 @@ form * {
     padding: 0;
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
-  }
+}
   
-  form {
+form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 380px;
-  }
+}
   
-  form div {
+form div {
     margin-bottom: 15px;
-  }
+}
   
-  form label {
+form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
   }
   
-  form input[type="text"],
-  form input[type="tel"],
-  form input[type="email"] {
+form input[type="text"],
+form input[type="tel"],
+form input[type="email"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-  }
+}
   
-  form input[type="radio"] {
+form input[type="radio"] {
     margin-right: 10px;
-  }
+}
   
-  form input[type="text"]:focus,
-  form input[type="tel"]:focus,
-  form input[type="email"]:focus {
+form input[type="text"]:focus,
+form input[type="tel"]:focus,
+form input[type="email"]:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-  }
+}
   
-  form input[type="radio"] + label {
+form input[type="radio"] + label {
     font-weight: normal;
     color: #666;
-  }
+}
   
-  form input[type="radio"]:checked + label {
+form input[type="radio"]:checked + label {
     font-weight: bold;
     color: #333;
-  }
+}
 
-  #upiPaymentLink{
+#upiPaymentLink{
     display: none;
     height: fit-content;
     padding: 10px 0;
@@ -554,5 +554,64 @@ form * {
     border: 1px solid black;
     border-radius:25px ;
     background-color: #0af106;
-  }
-  
+}
+#orderPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid rgb(112, 112, 112);
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+  /* Pop-up background overlay */
+#popupOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+  /* Table styling */
+#orderDetailsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#orderDetailsTable  th, #orderDetailsTable td {
+    text-align: center;
+    padding: 8px;
+    width: 50%;
+    border: 1px solid #807f7f;
+}
+
+#orderDetailsTable th {
+    background-color: #f2f2f2;
+}
+
+  /* Close button for the pop-up */
+.close-btn {
+    background-color: rgb(106, 255, 0);
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    cursor: pointer;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.close-btn:hover{
+    background-color: #888;
+}
