@@ -12,7 +12,7 @@
     font-family: "Fira Sans", sans-serif;
    font-weight: 400;
    font-style: normal;
-   overflow-x: hidden;
+   
 }
 
 .loader-container {
@@ -106,6 +106,7 @@ body{
     flex-direction: column;
     width: 100%;
     background-color: rgb(249, 245, 246);
+    overflow-x: hidden;
 }
 
 h1{
