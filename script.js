@@ -144,6 +144,7 @@ const form = document.getElementById('orderForm');
 form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     generateOrderNumber();
+    const timeNow = new Date().toLocaleString();
 
 
     // Collect the form data
@@ -156,6 +157,7 @@ form.addEventListener('submit', async (event) => {
         customerEmail: document.getElementById('email_address').value,
         customerMobile: document.getElementById('mobile_number').value
     };
+    orderData.orderTime = timeNow;
     console.log(orderData);
 
     // Send the data to the backend
@@ -184,7 +186,11 @@ form.addEventListener('submit', async (event) => {
         } else {
             // If the response is text or any other type
             result = await response.text();
-        }
+            if (result === 'Order Placed Successfully🎉') {
+                showPopup(orderData); // Show the pop-up with order details
+            }}
+
+        
 
         // Display the success message or response
         document.getElementById('response').innerText = (typeof result === 'string') ? result : result.message;
@@ -194,3 +200,21 @@ form.addEventListener('submit', async (event) => {
         document.getElementById('response').innerText = 'Error submitting order: ' + error.message;
     }
 });
+
+function showPopup(orderData) {
+    document.getElementById('orderNumber').textContent = orderData.orderNumber;
+    document.getElementById('order-name').textContent = orderData.customerName;
+    document.getElementById('order-item').textContent = orderData.item;
+    document.getElementById('order-price').textContent = orderData.price;
+    document.getElementById('order-quantity').textContent = orderData.quantity;
+
+    // Show pop-up and overlay
+    document.getElementById('popupOverlay').style.display = 'block';
+    document.getElementById('orderPopup').style.display = 'flex';
+  }
+
+function closePopup() {
+    document.getElementById('popupOverlay').style.display = 'none';
+    document.getElementById('orderPopup').style.display = 'none';
+}
+
