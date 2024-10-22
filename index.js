@@ -39,7 +39,8 @@ const orderSchema = new mongoose.Schema({
   price: String,
   customerName: String,
   customerEmail: String,
-  customerMobile: Number
+  customerMobile: Number,
+  orderTime: String
 });
 
 const Order = mongoose.model('Order', orderSchema);
