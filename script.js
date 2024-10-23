@@ -162,7 +162,7 @@ form.addEventListener('submit', async (event) => {
 
     // Send the data to the backend
     try {
-        const response = await fetch('https://khushi-crafts.vercel.app/submit-order', {
+        const response = await fetch('https://khushi-crafts.onrender.com/submit-order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -233,7 +233,7 @@ function sendOrderConfirmation(orderData) {
         customerMobile: orderData.customerMobile
     };
 
-    fetch('https://khushi-crafts.vercel.app/send-order-confirmation', {
+    fetch('https://khushi-crafts.onrender.com/send-order-confirmation', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
