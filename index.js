@@ -78,40 +78,173 @@ app.post('/send-order-confirmation', (req, res) => {
   // Create email payload
   const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
   sendSmtpEmail.to = [{ email: customerEmail }];
+  sendSmtpEmail.bcc = [{ email: 'aradhyadubey1113+orders@gmail.com' }];
   sendSmtpEmail.sender = { email: 'aradhyadubey1113@gmail.com', name: 'Khushi-Crafts' };
   sendSmtpEmail.subject = `Order Confirmation - #${orderNumber}`;
-  
+
   // HTML content for the email
   sendSmtpEmail.htmlContent = `
-    <html>
-      <body>
-        <h1>Order Confirmation - #${orderNumber}</h1>
-        <p>Thank you for your order, ${customerName}!</p>
-        <h2>Order Details:</h2>
-        <ul>
-          <li>Item: ${item}</li>
-          <li>Quantity: ${quantity}</li>
-          <li>Total Price: ${price}</li>
-        </ul>
-        <p>Your order was placed. We will contact you soon on your mobile number: ${customerMobile}.</p>
-        <p>Thank you for shopping with Khushi Crafts!</p>
-      </body>
-    </html>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Order Confirmation</title>
+  <style type="text/css">
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .u-content {
+      padding: 20px;
+      background-color: #ffffff;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color:#20dd49;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid #ddd;
+      width:50%;
+      text-align:center;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+
+    td {
+      background-color: #fafafa;
+    }
+
+    /* Buttons */
+    a.button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #20dd49;
+      color:black;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-right: 10px;
+      box-shadow:0 3px 6px gray;
+      border:1px solid black;
+    }
+
+    a.button:hover {
+      border-radius:15px;
+      background-color:black;
+      color:#20dd49;
+    }
+
+    /* Responsive Design */
+    @media only screen and (max-width: 480px) {
+      .u-content {
+        padding: 10px !important;
+        font-size: 14px !important;
+      }
+      
+      table{
+        width: 100%;
+        display: block;
+      }
+
+      th, td {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="u-content">
+  <div style="text-align: center;">
+  <img src="https://i.postimg.cc/JhNxFfzy/image-1.png" alt="Cart Icon" width="120" height="100">
+</div>
+    <h2>Thank you for your order!🎉</h2>
+    <p>Hi ${customerName},</p>
+    <p>We are excited to inform you that your order <strong>#${orderNumber}</strong> has been successfully placed. Below are the details of your purchase:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>${item}</td>
+          <td>${quantity}</td>
+          <td>₹ ${price}</td>
+        </tr>
+        <!-- Add more items dynamically as needed -->
+      </tbody>
+    </table>
+
+    <p><strong>Total Price:</strong>₹ ${price}</p>
+    <p>If you have any questions, feel free to contact our support team at aradhyadubey1113@gmail.com.</p>
+
+    <p>Thank you for choosing us!</p>
+    
+    <!-- Action Buttons -->
+    <p>
+      <a href="mailto:aradhyadubey1113@gmail.com" class="button">Contact Us</a>
+      <a href="https://khushi-crafts.onrender.com" class="button">Order Again</a>
+    </p>
+  </div>
+
+</body>
+</html>
   `;
 
   // Send the email
   const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
   apiInstance.sendTransacEmail(sendSmtpEmail).then(
-    function(data) {
+    function (data) {
       console.log('Email sent successfully: ' + JSON.stringify(data));
       res.status(200).send('Email Sent Successfully🎉');
     },
-    function(error) {
+    function (error) {
       console.error('Error sending email:', error);
       res.status(500).send('Email Sending Failed.');
     }
   );
 });
+
+
+
+
+
 
 
 
