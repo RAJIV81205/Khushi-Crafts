@@ -220,6 +220,7 @@ app.post('/send-order-confirmation', (req, res) => {
     <p>
       <a href="mailto:aradhyadubey1113@gmail.com" class="button">Contact Us</a>
       <a href="https://khushi-crafts.onrender.com" class="button">Order Again</a>
+      <a href="https://getupilink.com/upi/lucky81205@okicici?am=${price}" class="button">Pay Now</a>
     </p>
   </div>
 
