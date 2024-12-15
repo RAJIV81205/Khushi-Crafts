@@ -25,7 +25,7 @@ We also value sustainability and take pride in supporting local artisans by offe
 
 ## 🚀 Live Website
 
-Visit the live website hosted on Render: [Khushi Crafts](https://khushi-crafts.onrender.com). 
+Visit the live website hosted on Render: [Khushi Crafts](https://khushi-crafts-6eih.onrender.com/). 
 
 ---
 
